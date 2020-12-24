@@ -7,7 +7,12 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import TabThreeScreen from "../screens/TabThreeScreen";
+
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
+import TabFourScreen from "../screens/TabFourScreen";
+import TabFiveScreen from "../screens/TabFiveScreen";
+import TabSixScreen from "../screens/TabSixScreen";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,22 +21,51 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Dashboard"
+      screenOptions={{ headerShown: false, tabBarVisible:false}}
+      tabBarOptions={{ tabBarVisible: false, activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="Dashboard"
         component={TabOneNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Orders"
         component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
+    <BottomTab.Screen
+        name="Menus"
+        component={TabThreeNavigator}
+        options={{
+            tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+    />
+    <BottomTab.Screen
+        name="Customers"
+        component={TabFourNavigator}
+        options={{
+            tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+    />
+    <BottomTab.Screen
+        name="Analytics"
+        component={TabFiveScreen}
+        options={{
+            tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+    />
+    <BottomTab.Screen
+        name="Settings"
+        component={TabSixScreen}
+        options={{
+            tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+    />
     </BottomTab.Navigator>
   );
 }
@@ -50,9 +84,9 @@ function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
-        name="TabOneScreen"
+        name="Dashboard"
         component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'Tab One Title', headerShown: false }}
       />
     </TabOneStack.Navigator>
   );
@@ -64,10 +98,65 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
+        name="Orders"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Tab Two Title', headerShown:false }}
       />
     </TabTwoStack.Navigator>
   );
+}
+
+const TabThreeStack = createStackNavigator<TabTwoParamList>();
+
+function TabThreeNavigator() {
+    return (
+        <TabThreeStack.Navigator>
+            <TabThreeStack.Screen
+                name="Menus"
+                component={TabThreeScreen}
+                options={{ headerTitle: 'Tab threeee Title', headerShown:false }}
+            />
+        </TabThreeStack.Navigator>
+    );
+}
+
+const TabFourStack = createStackNavigator<TabTwoParamList>();
+
+function TabFourNavigator() {
+    return (
+        <TabFourStack.Navigator>
+            <TabFourStack.Screen
+                name="Customers"
+                component={TabFourScreen}
+                options={{ headerTitle: 'Tab threeee Title', headerShown:false }}
+            />
+        </TabFourStack.Navigator>
+    );
+}
+const TabFiveStack = createStackNavigator<TabTwoParamList>();
+
+function TabFiveNavigator() {
+    return (
+        <TabFiveStack.Navigator>
+            <TabFiveStack.Screen
+                name="Analytics"
+                component={TabFiveScreen}
+                options={{ headerTitle: 'Tab threeee Title', headerShown:false }}
+            />
+        </TabFiveStack.Navigator>
+    );
+}
+
+const TabSixStack = createStackNavigator<TabTwoParamList>();
+
+function TabSixNavigator() {
+    return (
+        <TabSixStack.Navigator>
+            <TabSixStack.Screen
+                name="Settings"
+                component={TabSixScreen}
+                options={{ headerTitle: 'Tab threeee Title', headerShown:false }}
+            />
+        </TabSixStack.Navigator>
+    );
 }
